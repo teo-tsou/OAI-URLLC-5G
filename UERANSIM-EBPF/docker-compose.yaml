@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  gnb:
+    image: shubhamtatvamasi/ueransim-demo:master
+    #image: free5gc/ueransim:latest
+    container_name: gnb
+    volumes:
+      - ./config:/config/demo
+    cap_add:
+      - SYS_NICE
+    command: nr-gnb -c demo/gnb.yaml
+    networks:
+            public_net:
+                ipv4_address: 192.168.70.141
+            n3_net:
+                ipv4_address: 192.168.71.141
+  ue:
+    image: shubhamtatvamasi/ueransim-demo:master
+    container_name: ue
+    volumes:
+      - ./config:/config/demo
+    depends_on:
+      - gnb
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+    devices:
+      - /dev/net/tun
+    command: nr-ue -c demo/ue.yaml
+
+    networks:
+            public_net:
+                ipv4_address: 192.168.70.160
+
+networks:
+    public_net:
+        external:
+            name: demo-oai-public-net
+    n3_net:
+        external:
+            name: demo-oai-n3-net
