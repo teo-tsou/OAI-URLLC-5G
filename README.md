@@ -20,7 +20,7 @@ In addition, this project guides you through system optimizations and RAN config
     - CPU: 4 cores x86_64
     - RAM: 8 GB
     - Windows driver for Quectel MUST be equal or higher than version **2.2.4**
-    - The Ubuntu driver can be found under quectel-ue directory
+    - The Ubuntu driver can be found under quectel-ue directory: Simply run: `make && make install`
 - [USRP B210](https://www.ettus.com/all-products/ub210-kit/), [USRP N300](https://www.ettus.com/all-products/USRP-N300/) or [USRP X300](https://www.ettus.com/all-products/x300-kit/)
     - Please identify the network interface(s) on which the USRP is connected and update the gNB configuration file. We are using N310 with 2x2 MIMO configuration.
 - Quectel RM500Q
