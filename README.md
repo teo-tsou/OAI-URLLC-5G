@@ -262,6 +262,21 @@ The configuration files can be found under the ran_confs directory of the repo. 
      nrofUplinkSymbols                                             = 4;
 ```
 
+Changing the transmission periodicity for TDD will allow you to get lower latency values.
+
+![DLULLatencyPeriodicity](figures/DLULlatency.png)
+
+In TDD, the transmission is divided into time domain, means at one moment of time either « D » downlink subframe is transmitted or « U » for uplink, and then we have « S » Special subframe which comes when there is a transition from downlink subframe to uplink subframe
+
+*For higher throughput – the frame structure should contain a high number of consecutive Downlinks (D)
+
+*For higher uplink data – the frame structure should contain a high number of consecutive Uplinks (U)
+
+*For lower latency and more accurate coverage (and higher speed mobile) – the frame structure should have a lower number of consecutive Downlinks (D) and Uplinks and more frequent switching. More frequent switching decreases throughput.
+
+
+You can validate the settings by trying to ping the UPF and observing how these settings affect the latency components.
+
 - Make sure you have this in the MACRLC section of the configuration file for the UL max frame inactivity :
 
 `ulsch_max_frame_inactivity=0;`
